@@ -30,9 +30,6 @@ spec:
             - name: SCANOPY_NETWORK_ID
               value: {{ .Values.scanopy.daemon.networkId | quote }}
 
-            - name: SCANOPY_USER_ID
-              value: {{ .Values.scanopy.daemon.userId | quote }}
-
             - name: SCANOPY_NAME
               value: {{ .Values.scanopy.daemon.name | quote }}
 

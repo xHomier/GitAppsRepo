@@ -12,7 +12,6 @@ scanopy:
     name: "scanopy-k8s"
     serverUrl: "http://scanopy.scanopy.svc.cluster.local:60072"
     networkId: "06c80a45-b3d1-4551-a565-9f073e7626d0"
-    userId: "APPLICATION"
 
 postgres:
   image: postgres:17
