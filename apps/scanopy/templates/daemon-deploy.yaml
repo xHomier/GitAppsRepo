@@ -22,13 +22,22 @@ spec:
           image: {{ .Values.scanopy.daemon.image }}
           env:
             - name: SCANOPY_MODE
-              value: {{ .Values.scanopy.daemon.mode }}
+              value: {{ .Values.scanopy.daemon.mode | quote }}
+
             - name: SCANOPY_SERVER_URL
-              value: "http://scanopy.scanopy.svc.cluster.local:60072"
+              value: {{ .Values.scanopy.daemon.serverUrl | quote }}
+
+            - name: SCANOPY_NETWORK_ID
+              value: {{ .Values.scanopy.daemon.networkId | quote }}
+
+            - name: SCANOPY_USER_ID
+              value: {{ .Values.scanopy.daemon.userId | quote }}
+
+            - name: SCANOPY_NAME
+              value: {{ .Values.scanopy.daemon.name | quote }}
+
             - name: SCANOPY_DAEMON_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: scanopy-secrets
                   key: daemon_api_key
-            - name: SCANOPY_ALLOW_SELF_SIGNED_CERTS
-              value: "true"

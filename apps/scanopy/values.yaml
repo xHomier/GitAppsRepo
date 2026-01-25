@@ -9,6 +9,10 @@ scanopy:
   daemon:
     image: ghcr.io/scanopy/scanopy/daemon:latest
     mode: Pull
+    name: "scanopy-k8s"
+    serverUrl: "http://scanopy.scanopy.svc.cluster.local:60072"
+    networkId: "APPLICATION"
+    userId: "APPLICATION"
 
 postgres:
   image: postgres:17
