@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: scanopy-postgres
+  namespace: scanopy
+spec:
+  serviceName: scanopy-postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scanopy-postgres
+  template:
+    metadata:
+      labels:
+        app: scanopy-postgres
+    spec:
+      nodeSelector:
+        nodepool: {{ .Values.nodepool }}
+      containers:
+        - name: postgres
+          image: {{ .Values.postgres.image }}
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: {{ .Values.postgres.db }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgres.user }}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: scanopy-secrets
+                  key: postgres_password
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: data
+          hostPath:
+            path: /var/lib/scanopy-postgres
+            type: DirectoryOrCreate

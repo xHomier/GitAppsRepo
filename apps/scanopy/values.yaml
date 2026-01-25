@@ -1,0 +1,17 @@
+nodepool: apps
+
+scanopy:
+  server:
+    image: ghcr.io/scanopy/scanopy/server:latest
+    port: 60072
+    publicUrl: http://scanopy.local:60072
+
+  daemon:
+    image: ghcr.io/scanopy/scanopy/daemon:latest
+    mode: Pull
+
+postgres:
+  image: postgres:17
+  db: scanopy
+  user: postgres
+  storage: 20Gi

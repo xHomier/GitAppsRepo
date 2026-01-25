@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scanopy-daemon
+  namespace: scanopy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scanopy-daemon
+  template:
+    metadata:
+      labels:
+        app: scanopy-daemon
+    spec:
+      nodeSelector:
+        nodepool: {{ .Values.nodepool }}
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: daemon
+          image: {{ .Values.scanopy.daemon.image }}
+          env:
+            - name: SCANOPY_MODE
+              value: {{ .Values.scanopy.daemon.mode }}
+            - name: SCANOPY_SERVER_URL
+              value: "http://scanopy.scanopy.svc.cluster.local:60072"
+            - name: SCANOPY_DAEMON_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: scanopy-secrets
+                  key: daemon_api_key
+            - name: SCANOPY_ALLOW_SELF_SIGNED_CERTS
+              value: "true"
