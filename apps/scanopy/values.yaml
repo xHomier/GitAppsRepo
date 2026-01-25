@@ -4,7 +4,7 @@ scanopy:
   server:
     image: ghcr.io/scanopy/scanopy/server:latest
     port: 60072
-    publicUrl: http://scanopy.local:60072
+    publicUrl: http://10.2.1.101:60072
 
   daemon:
     image: ghcr.io/scanopy/scanopy/daemon:latest
