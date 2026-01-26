@@ -18,5 +18,6 @@ spec:
 
   # Persistance projets (recommandé)
   projects_persistence: true
-  projects_storage_class: "YOUR_STORAGECLASS"
+  projects_storage_class: "local-path"
   projects_storage_size: "10Gi"
+

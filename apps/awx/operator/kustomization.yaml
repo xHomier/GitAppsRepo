@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: awx
 
 resources:
-  - secrets.yaml
-  - awx.yaml
+  - github.com/ansible/awx-operator/config/default?ref=2.12.2
