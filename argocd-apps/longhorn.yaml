@@ -6,9 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/xHomier/GitAppsRepo.git
-    targetRevision: main
-    path: apps/longhorn
+    repoURL: https://charts.longhorn.io
+    chart: longhorn
+    targetRevision: 1.6.2
+    helm:
+      values: |
+        # Optionnel: garder simple pour homelab
+        persistence:
+          defaultClass: true
+          defaultFsType: ext4
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
