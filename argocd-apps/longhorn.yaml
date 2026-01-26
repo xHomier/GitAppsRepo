@@ -11,10 +11,12 @@ spec:
     targetRevision: 1.6.2
     helm:
       values: |
-        # Optionnel: garder simple pour homelab
         persistence:
           defaultClass: true
           defaultFsType: ext4
+
+        preUpgradeChecker:
+          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
