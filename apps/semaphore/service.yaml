@@ -5,7 +5,7 @@ metadata:
   namespace: semaphore
 spec:
   type: LoadBalancer
-  loadBalancerIP: 10.1.2.102
+  loadBalancerIP: 10.2.1.102
   selector:
     app: semaphore
   ports:
