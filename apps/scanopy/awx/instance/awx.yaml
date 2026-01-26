@@ -1,0 +1,22 @@
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx
+  namespace: awx
+spec:
+  # Expose via MetalLB
+  service_type: LoadBalancer
+
+  # Optionnel: demander UNE IP précise du range MetalLB
+  loadbalancer_ip: 10.2.1.102
+
+  admin_password_secret: awx-admin-password
+
+  # Placement sur worker apps
+  node_selector:
+    nodepool: apps
+
+  # Persistance projets (recommandé)
+  projects_persistence: true
+  projects_storage_class: "YOUR_STORAGECLASS"
+  projects_storage_size: "10Gi"
