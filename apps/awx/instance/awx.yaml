@@ -9,9 +9,11 @@ spec:
 
   admin_password_secret: awx-admin-password
 
-  # FORMAT CORRECT
   node_selector: "nodepool=apps"
 
   projects_persistence: true
   projects_storage_class: "local-path"
   projects_storage_size: "10Gi"
+
+  postgres_security_context:
+    fsGroup: 26
