@@ -20,6 +20,22 @@ spec:
           image: semaphoreui/semaphore:latest
           ports:
             - containerPort: 3000
-          envFrom:
-            - configMapRef:
-                name: semaphore-config
+          env:
+            - name: SEMAPHORE_DB_DIALECT
+              value: sqlite
+            - name: SEMAPHORE_DB_HOST
+              value: /home/semaphore/database.sqlite
+            - name: SEMAPHORE_ADMIN
+              value: admin
+            - name: SEMAPHORE_ADMIN_PASSWORD
+              value: changeme
+            - name: SEMAPHORE_ADMIN_NAME
+              value: Administrator
+            - name: SEMAPHORE_ADMIN_EMAIL
+              value: admin@local
+            - name: SEMAPHORE_PLAYBOOK_PATH
+              value: /tmp/semaphore
+            - name: SEMAPHORE_PORT
+              value: "3000"
+            - name: SEMAPHORE_WEB_ROOT
+              value: "/"
