@@ -9,8 +9,8 @@ spec:
 
   admin_password_secret: awx-admin-password
 
-  # IMPORTANT: doit être une string
   node_selector: "nodepool=apps"
+  nodeSelector: "nodepool=apps"
 
   projects_persistence: true
   projects_storage_class: "local-path"
