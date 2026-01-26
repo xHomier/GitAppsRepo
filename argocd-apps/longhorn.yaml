@@ -16,7 +16,7 @@ spec:
           defaultFsType: ext4
 
         preUpgradeChecker:
-          enabled: false
+          jobEnabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
