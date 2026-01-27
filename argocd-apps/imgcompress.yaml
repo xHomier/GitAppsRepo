@@ -1,20 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: imgproxy
+  name: imgcompress
   namespace: argocd
 spec:
   project: default
-
   destination:
     server: https://kubernetes.default.svc
-    namespace: imgproxy
-
+    namespace: imgcompress
   source:
     repoURL: https://github.com/xHomier/GitAppsRepo.git
     targetRevision: main
-    path: apps/imgproxy
-
+    path: apps/imgcompress
   syncPolicy:
     automated:
       prune: true

@@ -1,41 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: semaphore
-  namespace: semaphore
+  name: imgcompress
+  namespace: imgcompress
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: semaphore
+      app: imgcompress
   template:
     metadata:
       labels:
-        app: semaphore
+        app: imgcompress
     spec:
-      nodeSelector:
-        nodepool: apps
       containers:
-        - name: semaphore
-          image: semaphoreui/semaphore:latest
+        - name: imgcompress
+          image: karimz1/imgcompress:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
-          env:
-            - name: SEMAPHORE_DB_DIALECT
-              value: sqlite
-            - name: SEMAPHORE_DB_HOST
-              value: /home/semaphore/database.sqlite
-            - name: SEMAPHORE_ADMIN
-              value: admin
-            - name: SEMAPHORE_ADMIN_PASSWORD
-              value: changeme
-            - name: SEMAPHORE_ADMIN_NAME
-              value: Administrator
-            - name: SEMAPHORE_ADMIN_EMAIL
-              value: admin@local
-            - name: SEMAPHORE_PLAYBOOK_PATH
-              value: /tmp/semaphore
-            - name: SEMAPHORE_PORT
-              value: "3000"
-            - name: SEMAPHORE_WEB_ROOT
-              value: "/"
+          resources:
+            requests:
+              cpu: 50m
+              memory: 256Mi
+            limits:
+              cpu: 1000m
+              memory: 1Gi
