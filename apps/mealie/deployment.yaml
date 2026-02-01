@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mealie
+  namespace: mealie
+  labels:
+    app: mealie
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mealie
+  template:
+    metadata:
+      labels:
+        app: mealie
+    spec:
+      nodeSelector:
+        nodepool: apps
+
+      containers:
+        - name: mealie
+          image: ghcr.io/mealie-recipes/mealie:v2.6.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9000
+
+          # ✅ Minimum viable env (tu pourras ajuster selon ton ancienne config)
+          env:
+            - name: TZ
+              value: "America/Toronto"
+            - name: BASE_URL
+              value: "http://mealie"
+
+          volumeMounts:
+            - name: mealie-data
+              mountPath: /app/data
+
+      volumes:
+        - name: mealie-data
+          persistentVolumeClaim:
+            claimName: mealie-data
