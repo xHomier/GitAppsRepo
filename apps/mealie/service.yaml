@@ -5,6 +5,7 @@ metadata:
   namespace: mealie
 spec:
   type: LoadBalancer
+  loadBalancerIP: 10.2.1.105
   selector:
     app: mealie
   ports:
